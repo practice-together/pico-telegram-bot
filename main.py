@@ -6,8 +6,8 @@ from machine import Pin, PWM
 import math
 
 # Configuration
-WIFI_SSID = 'Bhasin'
-WIFI_PASSWORD = 'bhasin#0123'
+WIFI_SSID = '#YOUR_WIFI_SSID'
+WIFI_PASSWORD = '#YOUR_WIFI_PASSWORD'
 SERVER_URL = 'http://192.168.1.156:3000'  # Replace with your server IP
 POLL_INTERVAL = 2  # seconds between version checks
 
