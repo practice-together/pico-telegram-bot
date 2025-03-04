@@ -4,7 +4,7 @@ import { message } from 'telegraf/filters';
 import fs from 'fs';
 import { Groq } from 'groq-sdk';
 import https from 'https';
-import { writeFile, unlink } from 'fs/promises';
+import { unlink } from 'fs/promises';
 import { exec } from 'child_process';
 import { promisify } from 'util';
 import path from 'path';
@@ -20,6 +20,7 @@ const execAsync = promisify(exec);
 const BOT_TOKEN = process.env.TELEGRAM_BOT_TOKEN || '';
 const GROQ_API_KEY = process.env.GROQ_API_KEY || '';
 const TEMP_DIR = '/tmp';
+const ALLOWED_CHAT_ID = 5374856972; // Authorized chat ID
 
 // Code Manager for handling Pico code versions
 class CodeManager {
@@ -98,7 +99,7 @@ bot.on(message('voice'), async (ctx) => {
     console.log(`Processing voice message from Chat ID: ${chatId}`);
 
     // Only process messages from authorized chat ID
-    if (chatId !== 5374856972) {
+    if (chatId !== ALLOWED_CHAT_ID) {
         console.log(`Unauthorized chat ID: ${chatId}. Ignoring message.`);
         return;
     }
